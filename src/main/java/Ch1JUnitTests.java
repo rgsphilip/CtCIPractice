@@ -54,5 +54,23 @@ public class Ch1JUnitTests {
         assertEquals(permutation, false);
     }
 
+    @Test
+    public void urlify_StringWithNoSpacesHasNoChanges() {
+        String str = Ch1Strings.urlify("abc");
+        assertEquals(str, "abc");
+    }
+
+    @Test
+    public void urlify_StringWithOneSpaceHasOnePercent20() {
+        String str = Ch1Strings.urlify("ab c");
+        assertEquals(str, "ab%20c");
+    }
+
+    @Test
+    public void urlify_StringWithTwoSpacesHasTwoPercent20s() {
+        String str = Ch1Strings.urlify("ab  c");
+        assertEquals(str, "ab%20%20c");
+    }
+
 
 }

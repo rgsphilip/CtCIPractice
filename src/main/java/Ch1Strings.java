@@ -1,7 +1,7 @@
 /**
  * Created by rPhilip on 3/2/17.
  */
-public class Ch1Strings {
+class Ch1Strings {
     static boolean isUnique(String str, int numCharactersInCharset) {
         //O(n) time complexity
         //O(c) space complexity where c is a constant (number of characters in the character set)
@@ -68,7 +68,17 @@ public class Ch1Strings {
     }
 
 
-    public static String urlify(String str) {
-        return "";
+    static String urlify(String str) {
+        String returnStr = "";
+        int len = str.length();
+        for(int i = 0; i < len; i++) {
+            if (str.charAt(i) != ' ') {
+                returnStr += str.charAt(i);
+            } else {
+                returnStr += "%20";
+            }
+        }
+
+        return returnStr;
     }
 }
