@@ -1,6 +1,9 @@
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by rPhilip on 3/2/17.
@@ -70,6 +73,18 @@ public class Ch1JUnitTests {
     public void urlify_StringWithTwoSpacesHasTwoPercent20s() {
         String str = Ch1Strings.urlify("ab  c");
         assertEquals(str, "ab%20%20c");
+    }
+
+    @Test
+    public void urlifyInPlace_StringWithNoSpacesHasNoChanges() {
+        char[] str = Ch1Strings.urlifyInPlace(new char[]{'a', 'b', 'c'}, 3);
+        assertTrue(Arrays.equals(str, new char[]{'a', 'b', 'c'}));
+    }
+
+    @Test
+    public void urlifyInPlace_StringWithOneSpaceHasOnePercent20() {
+        char[] str = Ch1Strings.urlifyInPlace(new char[]{'a', 'b', ' ','c', ' ', ' '}, 4);
+        assertTrue(Arrays.equals(str, new char[]{'a', 'b', '%', '2', '0', 'c'}));
     }
 
 

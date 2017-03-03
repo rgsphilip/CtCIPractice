@@ -69,6 +69,8 @@ class Ch1Strings {
 
 
     static String urlify(String str) {
+        //time complexity: O(n)
+        //space complexity: O(n)
         String returnStr = "";
         int len = str.length();
         for(int i = 0; i < len; i++) {
@@ -80,5 +82,22 @@ class Ch1Strings {
         }
 
         return returnStr;
+    }
+
+    static char[] urlifyInPlace(char[] str, int strlen) {
+        //assumes that str is big enough to hold the '%20's required
+        int ptrToEndOfCharArray = str.length - 1;
+        for(int i = strlen -1; i > -1; i--) {
+            if (str[i] != ' ') {
+                str[ptrToEndOfCharArray] = str[i];
+                ptrToEndOfCharArray--;
+            } else {
+                str[ptrToEndOfCharArray] = '0';
+                str[ptrToEndOfCharArray - 1] = '2';
+                str[ptrToEndOfCharArray - 2] = '%';
+                ptrToEndOfCharArray -= 3;
+            }
+        }
+        return str;
     }
 }
