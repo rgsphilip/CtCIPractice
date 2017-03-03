@@ -2,7 +2,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-
 /**
  * Created by rPhilip on 3/2/17.
  */
@@ -41,6 +40,18 @@ public class Ch1JUnitTests {
     public void isUniqueWithNoAdditionalDataStructureDataStructure_EmptyStringReturnsTrue() {
         boolean uniqueChars = Ch1Strings.isUniqueWithNoAdditionalDataStructure("");
         assertEquals(uniqueChars, true);
+    }
+
+    @Test
+    public void isPermutation_ValidPermutationsReturnTrue() {
+        boolean permutation = Ch1Strings.isPermutation("abc", "cba", 128);
+        assertEquals(permutation, true);
+    }
+
+    @Test
+    public void isPermutation_InvalidPermutationsReturnFalse() {
+        boolean permutation = Ch1Strings.isPermutation("abc", "bbc", 128);
+        assertEquals(permutation, false);
     }
 
 
