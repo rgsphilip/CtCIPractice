@@ -87,5 +87,29 @@ public class Ch1JUnitTests {
         assertTrue(Arrays.equals(str, new char[]{'a', 'b', '%', '2', '0', 'c'}));
     }
 
+    @Test
+    public void isPalindromePermutation_PalindromeWithEvenNumLettersReturnsTrue() {
+        boolean bool = Ch1Strings.isPalindromePermutation("abccba");
+        assertEquals(bool, true);
+    }
+
+    @Test
+    public void isPalindromePermutation_PalindromeWithOddNumLettersReturnsTrue() {
+        boolean bool = Ch1Strings.isPalindromePermutation("abcba");
+        assertEquals(bool, true);
+    }
+
+    @Test
+    public void isPalindromePermutation_PalindromePermutationReturnsTrue() {
+        boolean bool = Ch1Strings.isPalindromePermutation("abcabc");
+        assertEquals(bool, true);
+    }
+
+    @Test
+    public void isPalindromePermutation_NonPalindromePermutationReturnsFalse() {
+        boolean bool = Ch1Strings.isPalindromePermutation("abc");
+        assertEquals(bool, false);
+    }
+
 
 }

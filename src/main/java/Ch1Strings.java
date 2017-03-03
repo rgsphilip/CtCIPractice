@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 /**
  * Created by rPhilip on 3/2/17.
  */
@@ -85,6 +87,8 @@ class Ch1Strings {
     }
 
     static char[] urlifyInPlace(char[] str, int strlen) {
+        //time complexity: O(n)
+        //space complexity: O(1)
         //assumes that str is big enough to hold the '%20's required
         int ptrToEndOfCharArray = str.length - 1;
         for(int i = strlen -1; i > -1; i--) {
@@ -99,5 +103,36 @@ class Ch1Strings {
             }
         }
         return str;
+    }
+
+    static boolean isPalindromePermutation(String str) {
+        //time complexity: O(n + m) where n is the length of str and m is the number
+        //of unique letters in str. Reduces to O(n).
+        //space complexity: O(m)
+
+        //per specification, should ignore spaces
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == ' ') {
+                continue;
+            }
+            if (!map.containsKey(str.charAt(i))) {
+                map.put(str.charAt(i), 1);
+            } else {
+                int newVal = map.get(str.charAt(i)) + 1;
+                map.put(str.charAt(i), newVal);
+            }
+        }
+        int numOddInstancesOfChar = 0;
+        for(Integer value : map.values()) {
+            if (value % 2 == 1) {
+                if (numOddInstancesOfChar > 0) {
+                    return false;
+                }
+                numOddInstancesOfChar++;
+            }
+        }
+
+        return true;
     }
 }
