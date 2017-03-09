@@ -135,4 +135,80 @@ class Ch1Strings {
 
         return true;
     }
+
+    static boolean oneAway(String str1, String str2) {
+        //time complexity is equal to the functions called (O(n))
+        //space complexity is equal to the functions called (O(1))
+        if (str1.length() == str2.length()) {
+            return oneDifferent(str1, str2);
+        } else if (str1.length() + 1 == str2.length()) {
+            return oneRemoved(str2, str1);
+        } else if (str1.length() == str2.length() + 1) {
+            return oneRemoved(str1, str2);
+        }
+        return false;
+    }
+
+    static boolean oneRemoved(String longStr, String shortStr) {
+        //time complexity: O(n) (iterating through the string). Can be
+        //shorter in the case of more than one difference in the string before the end
+        //space complexity: O(1) (offset)
+        if (longStr.length() != shortStr.length() + 1) {
+            return false;
+        }
+        int offset = 0;
+        for (int i = 0; i < shortStr.length(); i++) {
+            if (longStr.charAt(offset + i) != shortStr.charAt(i)) {
+                if (offset > 0) {
+                    return false;
+                }
+                offset++;
+            }
+        }
+        return true;
+    }
+
+    static boolean oneDifferent(String str1, String str2) {
+        //time complexity: O(n) (iterating through the string). Can be
+        //shorter in the case of more than one difference in the string before the end
+        //space complexity: O(1) (differences)
+        if (str1.length() != str2.length()) {
+            return false;
+        }
+        int differences = 0;
+        for (int i = 0; i < str1.length(); i++) {
+            if (str1.charAt(i) != str2.charAt(i)) {
+                if (differences > 0) {
+                    return false;
+                }
+                differences++;
+            }
+        }
+        return true;
+    }
+
+    static String stringCompression(String str) {
+        String returnStr = "";
+        int len = str.length();
+        char currentChar = str.charAt(0);
+        int currentCount = 1;
+        for (int i = 1; i < len; i++) {
+            if (str.charAt(i) == currentChar) {
+                currentCount++;
+            } else {
+                returnStr+= currentChar;
+                returnStr += Integer.toString(currentCount);
+                currentCount = 1;
+                currentChar = str.charAt(i);
+            }
+        }
+        returnStr+= currentChar;
+        returnStr += Integer.toString(currentCount);
+
+        if (str.length() <= returnStr.length()) {
+            return str;
+        } else {
+            return returnStr;
+        }
+    }
 }

@@ -111,5 +111,59 @@ public class Ch1JUnitTests {
         assertEquals(bool, false);
     }
 
+    @Test
+    public void oneAway_ShouldReturnTrueIfThereAreZeroDifferences() {
+        boolean bool = Ch1Strings.oneAway("abc", "abc");
+        assertEquals(bool, true);
+    }
+
+    @Test
+    public void oneAway_ShouldReturnTrueIfOneLetterIsChanged() {
+        boolean bool = Ch1Strings.oneAway("abc", "abb");
+        assertEquals(bool, true);
+    }
+
+    @Test
+    public void oneAway_ShouldReturnTrueIfOneLetterIsDeleted() {
+        boolean bool = Ch1Strings.oneAway("abc", "ab");
+        assertEquals(bool, true);
+    }
+
+    @Test
+    public void oneAway_ShouldReturnTrueIfOneLetterIsAdded() {
+        boolean bool = Ch1Strings.oneAway("abc", "abcd");
+        assertEquals(bool, true);
+    }
+
+    @Test
+    public void oneAway_ShouldReturnFalseIfTwoLettersAdded() {
+        boolean bool = Ch1Strings.oneAway("abc", "abcde");
+        assertEquals(bool, false);
+    }
+
+    @Test
+    public void oneAway_ShouldReturnFalseIfTwoLettersAreDifferent() {
+        boolean bool = Ch1Strings.oneAway("abc", "ade");
+        assertEquals(bool, false);
+    }
+
+    @Test
+    public void oneAway_ShouldReturnFalseIfTwoLettersAreTakenAway() {
+        boolean bool = Ch1Strings.oneAway("abc", "a");
+        assertEquals(bool, false);
+    }
+
+    @Test
+    public void stringCompression_strShouldBeCompressed() {
+        String str = Ch1Strings.stringCompression("aabbbccccd");
+        assertEquals(str, "a2b3c4d1");
+    }
+
+    @Test
+    public void stringCompressions_shortStrShouldNotBeCompressed() {
+        String str = Ch1Strings.stringCompression("abc");
+        assertEquals(str, "abc");
+    }
+
 
 }
